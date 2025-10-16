@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Play, Pause, Volume2, Star, Music, Headphones } from 'lucide-react';
+import { Play, Pause, Volume2, Star, Music, Headphones, Bell } from 'lucide-react';
 import Link from "next/link";
 
 type Track = {
@@ -13,6 +13,7 @@ type Track = {
   genre: string;
   audioFile: string;
   featured?: boolean;
+  isNew?: boolean;
 };
 
 const tracks: Track[] = [
@@ -21,7 +22,7 @@ const tracks: Track[] = [
     title: "Beat 1",
     artist: "MELODIC STUDIOS",
     price: 99,
-    duration: "1:35",
+    duration: "2:30",
     genre: "Trap",
     audioFile: "/audio/Beat 1.wav",
     featured: true
@@ -107,6 +108,56 @@ const tracks: Track[] = [
     duration: "1:28",
     genre: "Trap",
     audioFile: "/audio/Beat 10.mp3"
+  },
+   {
+    id: 11,
+    title: "Beat 11",
+    artist: "MELODIC STUDIOS",
+    price: 99,
+    duration: "2:20",
+    genre: "Trap",
+    audioFile: "/audio/Beat 11.wav",
+    isNew: true
+  },
+  {
+    id: 12,
+    title: "Beat 12",
+    artist: "MELODIC STUDIOS",
+    price: 99,
+    duration: "2:10",
+    genre: "Hip Hop",
+    audioFile: "/audio/Beat 12.wav",
+    isNew: true
+  },
+  {
+    id: 13,
+    title: "Beat 13",
+    artist: "MELODIC STUDIOS",
+    price: 99,
+    duration: "2:46",
+    genre: "Drill",
+    audioFile: "/audio/Beat 13.wav",
+    isNew: true
+  },
+  {
+    id: 14,
+    title: "Beat 14",
+    artist: "MELODIC STUDIOS",
+    price: 99,
+    duration: "1:35",
+    genre: "RnB",
+    audioFile: "/audio/Beat 14.wav",
+    isNew: true
+  },
+  {
+    id: 15,
+    title: "Beat 15",
+    artist: "MELODIC STUDIOS",
+    price: 99,
+    duration: "2:05",
+    genre: "Afrobeat",
+    audioFile: "/audio/Beat 15.wav",
+    isNew: true
   },
 ];
 
@@ -278,7 +329,6 @@ export default function MusicStore() {
                   GENRES
                 </a>
               </div>
-              {/* Replace shopping cart with Home button */}
               <Link href="/" passHref>
                 <button className="relative group px-4 py-3 bg-gradient-to-r from-emerald-600 to-green-600 rounded-lg font-bold text-sm hover:from-emerald-500 hover:to-green-500 transition-all">
                   Home
@@ -321,7 +371,7 @@ export default function MusicStore() {
                     <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
                   </div>
                   <p className="text-base lg:text-lg text-emerald-300 font-medium leading-relaxed">
-                    Our library is updated daily with 10 exclusive beats—be sure to come back regularly to discover the latest beats.
+                    Our library is updated daily with 5 exclusive beats—be sure to come back regularly to discover the latest beats.
                   </p>
                 </div>
               </div>
@@ -447,6 +497,12 @@ export default function MusicStore() {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/20 to-green-600/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl border border-white/10 rounded-2xl p-8 group-hover:border-emerald-500/50 transition-all">
+                  {track.isNew && (
+                    <div className="absolute top-4 right-4 flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/40 rounded-lg backdrop-blur-lg">
+                      <Bell className="w-4 h-4 text-amber-400" />
+                      <span className="text-xs font-bold text-amber-300 tracking-widest uppercase">New Beat</span>
+                    </div>
+                  )}
                   <div className="flex items-start justify-between mb-6">
                     <div className="flex items-center gap-4">
                       <div className="w-20 h-20 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-600/50 group-hover:scale-110 transition-transform">
@@ -511,6 +567,7 @@ export default function MusicStore() {
         </div>
       </section>
 
+     
       <section className="relative z-10 py-24 px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <div className="relative">
